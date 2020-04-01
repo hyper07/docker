@@ -14,6 +14,7 @@ RUN set -x; \
             ca-certificates \
             curl \
             dirmngr \
+            zeep \
             fonts-noto-cjk \
             gnupg \
             libssl1.0-dev \
