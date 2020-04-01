@@ -14,7 +14,6 @@ RUN set -x; \
             ca-certificates \
             curl \
             dirmngr \
-            zeep \
             fonts-noto-cjk \
             gnupg \
             libssl1.0-dev \
@@ -36,6 +35,14 @@ RUN set -x; \
         && echo '7e35a63f9db14f93ec7feeb0fce76b30c08f2057 wkhtmltox.deb' | sha1sum -c - \
         && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
+
+RUN pip3 install whee
+RUN pip3 install simplejson l 
+RUN pip3 install babel
+RUN pip3 install PyPDF2
+RUN pip3 install passlib
+RUN pip3 install werkzeug
+RUN pip3 install zeep
 
 # install latest postgresql-client
 RUN set -x; \
