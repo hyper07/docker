@@ -16,7 +16,6 @@ RUN set -x; \
             dirmngr \
             fonts-noto-cjk \
             gnupg \
-            libssl1.0-dev \
             libxslt-dev \
             libzip-dev \
             libpq-dev \
