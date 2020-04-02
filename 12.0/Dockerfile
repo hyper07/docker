@@ -11,7 +11,6 @@ RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/so
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
-            sudo \
             ca-certificates \
             curl \
             dirmngr \
