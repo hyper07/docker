@@ -10,10 +10,10 @@ RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/so
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 
 
-RUN sudo apt-get remove python3-apt
-RUN sudo apt-get install python3-apt
-RUN sudo apt-get update
-RUN sudo apt-get dist-upgrade
+RUN apt-get remove python3-apt
+RUN apt-get install python3-apt
+RUN apt-get update
+RUN apt-get dist-upgrade
 
 
 RUN set -x; \
@@ -21,6 +21,7 @@ RUN set -x; \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
             curl \
+            sudo \
             dirmngr \
             fonts-noto-cjk \
             gnupg \
