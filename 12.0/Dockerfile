@@ -10,14 +10,9 @@ RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/so
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 
 
-RUN apt-get remove python3-apt
-RUN apt-get install python3-apt
-RUN apt-get update
-RUN apt-get dist-upgrade
-
-
 RUN set -x; \
         apt-get update \
+        && apt-get dist-upgrade
         && apt-get install -y --no-install-recommends \
             ca-certificates \
             curl \
