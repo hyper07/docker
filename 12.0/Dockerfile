@@ -99,7 +99,7 @@ RUN pip3 install PyPDF2
 RUN pip3 install passlib
 RUN pip3 install werkzeug
 RUN pip3 install zeep
-RUN pip3 install install Babel decorator docutils feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
+RUN pip3 install install Babel decorator docutils feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
 RUN pip3 install --upgrade setuptools
 RUN pip3 install -r /etc/odoo/requirements.txt
 
