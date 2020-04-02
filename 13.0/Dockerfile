@@ -9,15 +9,26 @@ RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
+            sudo \
             curl \
             dirmngr \
             fonts-noto-cjk \
             gnupg \
+            libxslt-dev \
+            libzip-dev \
+            libpq-dev \
+            libldap2-dev \
+            libsasl2-dev \
             libssl-dev \
+            build-essential \
+            wget \
+            git \
             node-less \
             npm \
             python3-num2words \
+            python3-dev \
             python3-pip \
+            python3-wheel \
             python3-phonenumbers \
             python3-pyldap \
             python3-qrcode \
@@ -26,6 +37,7 @@ RUN set -x; \
             python3-slugify \
             python3-vobject \
             python3-watchdog \
+            python3-setuptools \
             python3-xlrd \
             python3-xlwt \
             xz-utils \
@@ -66,6 +78,18 @@ RUN set -x; \
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
+COPY ./requirements.txt /etc/odoo/requirements.txt
+
+RUN pip3 install wheel
+RUN pip3 install simplejson
+RUN pip3 install babel
+RUN pip3 install PyPDF2
+RUN pip3 install passlib
+RUN pip3 install werkzeug
+RUN pip3 install zeep
+RUN pip3 install decorator docutils feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse psutil psycogreen psycopg2 pydot pyparsing pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject XlsxWriter xlwt xlrd
+RUN pip3 install --upgrade setuptools
+RUN pip3 install -r /etc/odoo/requirements.txt
 
 # Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
@@ -80,6 +104,11 @@ EXPOSE 8069 8071
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
+
+
+# Reset password for root and odoo
+Run echo 'root:Docker!' | chpasswd
+Run echo 'odoo:Docker!' | chpasswd
 
 # Set default user when running the container
 USER odoo
