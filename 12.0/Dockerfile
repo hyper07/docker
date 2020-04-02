@@ -12,6 +12,7 @@ RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
+            sudo \
             curl \
             dirmngr \
             fonts-noto-cjk \
@@ -116,6 +117,10 @@ EXPOSE 8069 8071
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
+
+# Reset password for root and odoo
+Run echo 'root:Docker!' | chpasswd
+Run echo 'odoo:Docker!' | chpasswd
 
 # Set default user when running the container
 USER odoo
