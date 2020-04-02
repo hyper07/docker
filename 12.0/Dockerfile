@@ -17,9 +17,20 @@ RUN set -x; \
             fonts-noto-cjk \
             gnupg \
             libssl1.0-dev \
+            libxslt-dev \
+            libzip-dev \
+            libpq-dev \
+            libldap2-dev \
+            libsasl2-dev \
             node-less \
+            libssl-dev \
+            build-essential \
+            wget \
+            git \
             python3-num2words \
+            python3-dev \
             python3-pip \
+            python3-wheel \
             python3-phonenumbers \
             python3-pyldap \
             python3-qrcode \
@@ -28,6 +39,7 @@ RUN set -x; \
             python3-slugify \
             python3-vobject \
             python3-watchdog \
+            python3-setuptools \
             python3-xlrd \
             python3-xlwt \
             xz-utils \
@@ -88,6 +100,8 @@ RUN pip3 install PyPDF2
 RUN pip3 install passlib
 RUN pip3 install werkzeug
 RUN pip3 install zeep
+RUN pip3 install install Babel decorator docutils feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
+RUN pip3 install --upgrade setuptools
 RUN pip3 install -r /etc/odoo/requirements.txt
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
