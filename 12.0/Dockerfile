@@ -43,7 +43,7 @@ RUN pip3 install PyPDF2
 RUN pip3 install passlib
 RUN pip3 install werkzeug
 RUN pip3 install zeep
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /12.0/requirements.txt
 
 # install latest postgresql-client
 RUN set -x; \
