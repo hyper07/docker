@@ -36,8 +36,8 @@ RUN set -x; \
         && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
-RUN pip3 install whee
-RUN pip3 install simplejson l 
+RUN pip3 install wheel
+RUN pip3 install simplejson
 RUN pip3 install babel
 RUN pip3 install PyPDF2
 RUN pip3 install passlib
