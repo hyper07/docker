@@ -36,14 +36,6 @@ RUN set -x; \
         && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
-RUN pip3 install wheel
-RUN pip3 install simplejson
-RUN pip3 install babel
-RUN pip3 install PyPDF2
-RUN pip3 install passlib
-RUN pip3 install werkzeug
-RUN pip3 install zeep
-RUN pip3 install -r ./requirements.txt
 
 # install latest postgresql-client
 RUN set -x; \
@@ -87,6 +79,16 @@ RUN set -x; \
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
+COPY ./requirements.txt /etc/odoo/requirements.txt
+
+RUN pip3 install wheel
+RUN pip3 install simplejson
+RUN pip3 install babel
+RUN pip3 install PyPDF2
+RUN pip3 install passlib
+RUN pip3 install werkzeug
+RUN pip3 install zeep
+RUN pip3 install -r /etc/odoo/requirements.txt
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
