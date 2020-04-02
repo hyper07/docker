@@ -12,7 +12,7 @@ RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/so
 
 RUN set -x; \
         apt-get update \
-        && apt-get dist-upgrade
+        && apt-get dist-upgrade \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
             curl \
