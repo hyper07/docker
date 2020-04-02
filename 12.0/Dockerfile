@@ -118,6 +118,8 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
+RUN echo 'root:Docker!' | chpasswd
+RUN echo 'odoo:Docker!' | chpasswd
 # Set default user when running the container
 USER odoo
 
