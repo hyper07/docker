@@ -8,12 +8,20 @@ ENV LANG C.UTF-8
 RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
+
+
+RUN sudo apt-get remove python3-apt
+RUN sudo apt-get install python3-apt
+RUN sudo apt-get update
+RUN sudo apt-get dist-upgrade
+
+
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
-            sudo \
             curl \
+            sudo \
             dirmngr \
             fonts-noto-cjk \
             gnupg \
@@ -27,6 +35,7 @@ RUN set -x; \
             build-essential \
             wget \
             git \
+            python-dev \
             python3-num2words \
             python3-dev \
             python3-pip \
@@ -35,6 +44,7 @@ RUN set -x; \
             python3-pyldap \
             python3-qrcode \
             python3-renderpm \
+            python3-numpy \
             python3-setuptools \
             python3-slugify \
             python3-vobject \
@@ -117,10 +127,6 @@ EXPOSE 8069 8071
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
-
-# Reset password for root and odoo
-Run echo 'root:Docker!' | chpasswd
-Run echo 'odoo:Docker!' | chpasswd
 
 # Set default user when running the container
 USER odoo
